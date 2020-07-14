@@ -11,8 +11,7 @@ const useStyles = makeStyles({
         color: "#f26925"
     },
     containerInternal: {
-        marginTop: 20,
-        marginLeft: 80,
+        paddingTop: 10,
         width: `calc(100% - ${drawerWidth}px)`,
     },
     breadcrumbBar: {
@@ -49,14 +48,14 @@ export const ForumContainerComponent: React.FC = () => {
     return (
         <div className={classes.breadcrumbBar}>
             <BreadcrumbBarComponent />
-        <Container className={classes.containerInternal} >
-            <div style={{ width: '100%' }}>
-                <Box justifyContent="center" display="flex" flexDirection="column">
-                    {renderForumQuestionComponents()}
-                    {renderForumAnswerComponents()}
-                </Box>
-            </div>
-        </Container>
+            <Container className={classes.containerInternal} >
+                <div style={{ width: '100%' }}>
+                    <Box justifyContent="center" display="flex" flexDirection="column">
+                        {renderForumQuestionComponents()}
+                        {renderForumAnswerComponents()}
+                    </Box>
+                </div>
+            </Container>
         </div>
     )
 }

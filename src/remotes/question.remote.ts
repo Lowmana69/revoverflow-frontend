@@ -6,7 +6,7 @@ interface ServerQuestion {
     content: string;
     creation_date: Date;
     status: boolean;
-    user_id: number
+    user_id: number;
 }
 
 export const getAllQuestionsByUserId = async (id: number) => {

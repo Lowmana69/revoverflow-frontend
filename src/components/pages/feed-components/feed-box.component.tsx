@@ -13,9 +13,9 @@ const useStyles = makeStyles({
 });
 
 interface FeedBoxComponentProps {
-    username: string;
+    userId: number;
     title: string;
-    body: String;
+    content: String;
 }
 
 export const FeedBoxComponent: React.FC<FeedBoxComponentProps> = (props) => {
@@ -29,8 +29,8 @@ export const FeedBoxComponent: React.FC<FeedBoxComponentProps> = (props) => {
         <Card className={classes.boxInternal}>
             <Box  onClick={() => handleRedirect()} >
                 <h2>{props.title}</h2>
-                <p>{props.body}</p>
-                <h3>{props.username}</h3>
+                <p>{props.content}</p>
+                <h3>{props.userId}</h3>
             </Box>
         </Card>
     )

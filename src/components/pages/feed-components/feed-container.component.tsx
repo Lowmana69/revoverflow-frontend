@@ -9,6 +9,10 @@ import HelpOutlinedIcon from '@material-ui/icons/HelpOutlined';
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
 import Pagination from '@material-ui/lab/Pagination';
 import { BreadcrumbBarComponent } from '../breadcrumb-bar.component';
+import { Question } from '../../../models/question';
+import { IState } from '../../../reducers';
+import { connect } from 'react-redux';
+
 
 const drawerWidth = 100;
 const theme = createMuiTheme({
@@ -27,8 +31,7 @@ const useStyles = makeStyles({
         color: "#f26925"
     },
     containerInternal: {
-        marginTop: 20,
-        marginLeft: 80,
+        paddingTop: 10,
         width: `calc(100% - ${drawerWidth}px)`,
     },
     breadcrumbBar: {
@@ -37,21 +40,34 @@ const useStyles = makeStyles({
     }
 });
 
-export const FeedContainerComponent: React.FC = () => {
+export interface FeedContainerComponentProps {
+    questions: Question[]
+}
+
+export const FeedContainerComponent: React.FC<FeedContainerComponentProps> = (props) => {
     const classes = useStyles();
+    // const history = useHistory();
     const [value, setValue] = React.useState(2);
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue);
     };
 
-    const data = ['Yuri', 'What is the Formula for Concentrated Dark matter?', 'I have been wondering for the longest time, does anyone know the formula for concentrated dark matter?']
-    const Posts: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
+    // const data = ['Yuri', 'What is the Formula for Concentrated Dark matter?', 'I have been wondering for the longest time, does anyone know the formula for concentrated dark matter?']
+    // const Posts: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
+
+    // const renderFeedBoxComponents = () => {
+    //     return Posts.map(post => {
+    //         return (
+    //             <FeedBoxComponent username={data[0]} title={data[1]} body={data[2]} />
+    //         )
+    //     })
+    // }
 
     const renderFeedBoxComponents = () => {
-        return Posts.map(post => {
+        return props.questions.map(post => {
             return (
-                <FeedBoxComponent username={data[0]} title={data[1]} body={data[2]} />
+                <FeedBoxComponent userId={post.userId} title={post.title} content={post.content}  />
             )
         })
     }
@@ -97,7 +113,19 @@ export const FeedContainerComponent: React.FC = () => {
     );
 }
 
-export default FeedContainerComponent;
+const mapStateToProps = (state: IState) => {
+    return {
+        questions: state.questionState.collectedQuestions
+    }
+}
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedContainerComponent);
+
+
 
 //!Pagination of Feed items
 //!Button on click goes to post a question page
