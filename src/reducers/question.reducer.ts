@@ -12,11 +12,11 @@ export const questionReducer = (state: QuestionState = initialState,
         switch(action.type) {
             case questionActionTypes.POST_QUESTION: {
                 let questionArray = state.collectedQuestions;
-                if (!state.collectedQuestions.some(q => 
-                    q.title === action.payload.question.title)) {
+                // if (!state.collectedQuestions.some(q => 
+                //     q.title === action.payload.question.title)) {
                         questionArray = [...questionArray, action.payload.question]
                             .sort((a, b) => a.creationDate.getTime() - b.creationDate.getTime());
-                    }
+                    // }
                     return {
                         ...state,
                         collectedQuestions: questionArray
