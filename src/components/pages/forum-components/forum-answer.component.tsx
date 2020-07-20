@@ -220,7 +220,7 @@ export const ForumAnswerComponent: React.FC<ForumAnswerComponentProps> = (props)
 
 const mapStateToProps = (state: IState) => {
     return {
-        // storeAnswers: state.answerState.collectedAnswers
+        storeAnswers: state.answerState.collectedAnswers
     }
 }
 
