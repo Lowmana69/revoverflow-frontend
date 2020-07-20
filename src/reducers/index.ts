@@ -3,7 +3,6 @@ import { Answer } from '../models/answer';
 import { combineReducers } from 'redux';
 import { questionReducer } from './question.reducer';
 import { answerReducer } from './answer.reducer';
-import { Answer } from '../models/answer';
 
 
 export interface IState {

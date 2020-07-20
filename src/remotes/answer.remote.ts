@@ -22,7 +22,7 @@ export const getAnswers = async () => {
 }
 
 //GET/answers/:id
-export const getAnswersById = async (id: number) => {
+export const getAnswersByQuestionId = async (id: number) => {
     const response = await Axios.get<Answer[]>(`/answers/${id}`)
     return response.data.map((a) => {
         a.creationDate = new Date(a.creationDate);
@@ -37,6 +37,12 @@ export const getAnswersByUserId = async (id: number) => {
         a.creationDate = new Date(a.creationDate);
         return a;
     });
+}
+
+//Get an answer by its answer ID (no known endpoint)
+export const getdAnswerByAnswerId = async (id: number) => {
+    const response = await Axios.get<Answer>(`/answers/aid/${id}`)
+    return response.data
 }
 
 
