@@ -3,7 +3,6 @@
  * Evan Liebhauser
  */
 
-
 import Axios from 'axios';
 import { Answer } from '../models/answer';
 import { internalAxios } from './internal.axios';
@@ -40,7 +39,7 @@ export const getAnswersByUserId = async (id: number, size: number, page: number)
 }
 
 //Get an answer by its answer ID (no known endpoint)
-export const getdAnswerByAnswerId = async (id: number) => {
+export const getAnswerByAnswerId = async (id: number) => {
     const response = await Axios.get<Answer>(`/answers/aid/${id}`)
     return response.data
 }
@@ -62,9 +61,9 @@ export const postAnswer = async (answer: Answer) => {
 }
 
 
-//PUT/answer
-export const putAnswer = async (answer: Answer) => {
-    const response = await internalAxios.put<Answer>(`/answers`, answer);
-    response.data.creationDate = new Date(response.data.creationDate);
-    return response.data;
-}
+//PUT/answer (not expected to be used in final product)
+// export const putAnswer = async (answer: Answer) => {
+//     const response = await internalAxios.put<Answer>(`/answers`, answer);
+//     response.data.creationDate = new Date(response.data.creationDate);
+//     return response.data;
+// }
