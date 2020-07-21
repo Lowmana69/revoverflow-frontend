@@ -12,9 +12,9 @@ interface APIAnswer {
     content: string;
 }
 
-//GET/answers/ (confirmed to be on backend) (needs pagination) (might not be useful)
-export const getAnswers = async () => {
-    const response = await Axios.get<Answer[]>(`/answers`)
+//GET/answers/ (confirmed to be on backend) (might not be useful)
+export const getAnswers = async (size: number, page: number) => {
+    const response = await Axios.get<Answer[]>(`/answers?size=${size}&page=${page}`)
     return response.data.map((a) => {
         a.creationDate = new Date(a.creationDate);
         return a;
@@ -22,17 +22,17 @@ export const getAnswers = async () => {
 }
 
 //GET/answers/:id
-export const getAnswersByQuestionId = async (id: number) => {
-    const response = await Axios.get<Answer[]>(`/answers/${id}`)
+export const getAnswersByQuestionId = async (id: number, size: number, page: number) => {
+    const response = await Axios.get<Answer[]>(`/answers/${id}?size=${size}&page=${page}`)
     return response.data.map((a) => {
         a.creationDate = new Date(a.creationDate);
         return a;
     });
 }
 
-//GET answers by userId (confirmed to be on backend) (needs pagination)
-export const getAnswersByUserId = async (id: number) => {
-    const response = await Axios.get<Answer[]>(`/answers/user/${id}`)
+//GET answers by userId (confirmed to be on backend)
+export const getAnswersByUserId = async (id: number, size: number, page: number) => {
+    const response = await Axios.get<Answer[]>(`/answers/user/${id}?size=${size}&page=${page}`)
     return response.data.map((a) => {
         a.creationDate = new Date(a.creationDate);
         return a;
